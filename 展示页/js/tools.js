@@ -14,9 +14,11 @@ var tools =  {
         if(light) {
             document.onmousemove = function (ev) {
             	if (tools.crash(light,showBox)) {
-            		light.style.display = "none";
+            		showBox.classList.add('show');
+            		light.classList.add('hide');
             	} else{
-            		light.style.display = "block";
+            		showBox.classList.remove('show');
+            		light.classList.remove('hide');
             	}
                 var left = ev.clientX - light.clientWidth/2;
                 var top = ev.clientY - light.clientHeight/2;
@@ -46,9 +48,7 @@ var tools =  {
     		var r = 0;
     		isMoving = true;
     		time = setInterval(function(){
-    			if(callback) {
-    				clearInterval(time);
-    			}
+    			callback&&callback(time);
 				r+=5;
 				obj.style.clipPath = "circle("+ r +"px at "+ tools.addPx(x) + " "+tools.addPx(y) + ")";
 			
